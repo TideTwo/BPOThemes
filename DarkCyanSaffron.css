@@ -1,0 +1,436 @@
+/* *Colors and font */
+:root {
+  --text: #797979;
+  --textL: #bdbfc0;
+  --primary: #2393ab;
+  --primaryD: #296775;
+  --secondary: #faba12;
+  --secondaryD: #a07f2c;
+  --backgroundL: #181a1a;
+  --background: #131414;
+  --backgroundD: #0d0e0e;
+  font-family: "Montserrat";
+}
+/* *Animations */
+@keyframes spinAnim {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes colorFlashAnim {
+  0% {
+    color: var(--primary);
+    border: 3px solid var(--primary);
+    box-shadow: 0px 0px 20px 2px var(--primary);
+    text-shadow: 0px 0px 20px var(--primary);
+  }
+  50% {
+    color: var(--secondary);
+    border: 3px solid var(--secondary);
+    box-shadow: 0px 0px 20px 2px var(--secondary);
+    text-shadow: 0px 0px 20px var(--secondary);
+  }
+  100% {
+    color: var(--primary);
+    border: 3px solid var(--primary);
+    box-shadow: 0px 0px 20px 2px var(--primary);
+    text-shadow: 0px 0px 20px var(--primary);
+  }
+}
+@keyframes slideInAnim {
+  0% {
+    transform: translatex(400px);
+    animation-timing-function: ease-out;
+  }
+  80% {
+    transform: translatex(0px);
+    animation-timing-function: ease-out;
+  }
+}
+@keyframes opacityInAnim {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes colorDesaturateAnim {
+  0% {
+    color: var(--primary);
+  }
+  33% {
+    color: var(--primary);
+  }
+  66% {
+    color: var(--secondary);
+  }
+  100% {
+    color: var(--text);
+  }
+}
+@keyframes bounceInAnim {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+/* *Background */
+body {
+  background: conic-gradient(at 20% 20%, var(--backgroundD) 75%, var(--background) 0);
+  background-size: 30px 30px;
+  color: var(--text);
+  transition: background 0s;
+}
+/* *SideBar */
+.sidenav {
+  background-color: var(--background);
+  filter: blur(1.5px);
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    filter: blur(0px) !important;
+  }
+  .branding {
+    opacity: 0.4;
+  }
+  :active {
+    transform: rotate(1.5deg);
+  }
+  .menu-button {
+    .link {
+      color: var(--text) !important;
+    }
+    &:hover {
+      & svg {
+        transform: scale(1.2);
+      }
+    }
+  }
+  :nth-child(even) svg {
+    color: var(--primaryD);
+  }
+  & svg {
+    color: var(--secondaryD);
+  }
+}
+/* *Preference settings */
+.plugin-card {
+  background: var(--background) !important;
+  &:hover {
+    transform: rotate(0.9deg) scale(1.01);
+    filter: brightness(110%);
+  }
+  & svg {
+    display: none;
+  }
+  .header {
+    font-weight: bold;
+    border-bottom: 1px solid var(--primary) !important;
+    & span {
+      padding-left: 10px;
+      padding-right: 10px;
+      border-bottom: 5px solid var(--secondaryD);
+    }
+  }
+  & button:active {
+    transform: scaleX(0.85) scaleY(0.95) !important;
+  }
+
+  & button,
+  select,
+  input {
+    color: var(--text) !important;
+    background-color: var(--backgroundD) !important;
+    border: none !important;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  .checkbox input:checked {
+    background-color: var(--text) !important;
+  }
+}
+/* *Preference plugin list */
+.available-plugins {
+  background: none;
+  box-shadow: none;
+  .header {
+    background-color: var(--backgroundD);
+    font-weight: bold;
+    border-bottom: 2px solid var(--text);
+  }
+  .cards {
+    .card {
+      background-color: var(--background);
+      .card-header {
+        justify-content: space-between;
+        border-bottom: 3px solid var(--text);
+        & a {
+          color: var(--text);
+          :hover {
+            color: var(--textL);
+          }
+        }
+      }
+      & button {
+        display: none;
+      }
+      & span {
+        &.author {
+          font-size: 0.95em;
+          color: var(--primaryD);
+        }
+        &.desc {
+          font-size: 0.7em;
+          color: var(--secondaryD);
+        }
+      }
+    }
+  }
+}
+/* *Library top */
+.top {
+  & button,
+  input {
+    color: var(--text);
+    background-color: var(--background) !important ;
+    &::placeholder {
+      color: var(--text) !important;
+    }
+  }
+  & button {
+    border-color: var(--background);
+    background-color: var(--background);
+    border-left-color: var(--primary);
+    border-right-color: var(--secondary);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    &:hover svg {
+      animation: 1.5s spinAnim infinite ease-in-out;
+    }
+  }
+  & input.search-bar {
+    margin-right: 9px;
+    border-color: var(--background);
+    border-left-color: var(--primary);
+    border-right-color: var(--secondary);
+    border-left-width: 2px;
+    border-right-width: 2px;
+  }
+}
+/* *Library games list */
+.game-panel {
+  .game-text {
+    & button {
+      backdrop-filter: blur(2px);
+      &:hover {
+        transform: translateY(10px);
+      }
+      & p {
+        color: var(--text);
+      }
+    }
+  }
+  /* *edit game sidebar */
+  .gm-flex {
+    .game-modal {
+      border-top-left-radius: 80px;
+      margin-top: 10vh;
+      height: 87vh;
+      background-color: var(--background);
+      color: var(--text);
+      &[open] {
+        animation: slideInAnim 0.3s ease-out;
+      }
+      #game-name {
+        color: var(--text);
+      }
+      #game-desc {
+        color: var(--text);
+      }
+      #execute {
+        color: var(--text);
+        background-color: var(--backgroundD);
+        border: 3px solid var(--backgroundD);
+        &:hover {
+          animation: 0.75s colorFlashAnim infinite ease-in-out;
+        }
+      }
+      .buttons {
+        padding-bottom: 20px;
+        .game-button-delete {
+          color: var(--primaryD);
+          padding-right: 50px;
+          :hover {
+            color: var(--primary);
+          }
+        }
+        .game-button-run {
+          color: var(--secondaryD);
+          padding-left: 50px;
+          :hover {
+            color: var(--secondary);
+          }
+        }
+      }
+    }
+  }
+}
+/* *add game modal container */
+.window.svelte-n7cvum {
+  animation: bounceInAnim 0.4s ease-out !important;
+  background-color: var(--background) !important;
+  border-left-color: var(--primary) !important;
+  border-right-color: var(--secondary) !important;
+  border-left-width: 4px !important;
+  border-right-width: 4px !important;
+  .modal-main {
+    /* ? skeleton to what i assume to be a game picker (i cant get "Fetch metadata" to do anyth) */
+    /* dialog[open].fetch-meta {
+     &span {
+      &::after {
+      }
+    }
+    &button {
+      &:hover {
+      }
+    } 
+    } */
+    /* *add new game dialog */
+    .newgame {
+      & button.fetch-meta {
+        color: var(--text);
+        background-color: var(--backgroundD);
+        border-color: var(--background);
+        &:hover {
+          transform: scale(1.05);
+          color: var(--textL);
+        }
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+      & input,
+      textarea {
+        color: var(--textL);
+        background-color: var(--backgroundD);
+        border-color: var(--backgroundD);
+        &::placeholder {
+          color: var(--text);
+        }
+      }
+      .show-path {
+        color: text;
+        .ng-button {
+          color: var(--text);
+          background-color: var(--backgroundD);
+          border-color: var(--backgroundD);
+          &:hover {
+            transform: scale(1.05);
+            color: var(--textL);
+          }
+          &:active {
+            transform: scale(0.95);
+          }
+        }
+        & img {
+          background-color: var(--backgroundD);
+          border-color: var(--backgroundD);
+        }
+      }
+    }
+    .done-btn {
+      & button {
+        background-color: var(--backgroundD);
+        color: var(--text);
+        border-color: var(--backgroundD);
+        &:hover {
+          transform: scale(1.05);
+          color: var(--textL);
+        }
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+  }
+}
+/* ?i think this is for the update dialog  */
+.toast {
+  & button {
+  }
+  & p {
+  }
+}
+/* *Browse top */
+.search {
+  & input {
+    color: var(--text);
+    background-color: var(--background);
+    border-color: var(--background);
+    border-left-color: var(--primary);
+    border-right-color: var(--secondary);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    &[type="text"]::placeholder {
+      color: var(--text);
+    }
+  }
+
+  & button {
+    background-color: var(--background);
+    border-color: var(--background);
+    border-left-color: var(--primary);
+    border-right-color: var(--secondary);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    & i {
+      color: var(--text);
+    }
+  }
+
+  & select {
+    margin-right: 9px;
+    color: var(--text);
+    background-color: var(--background);
+    border-color: var(--background);
+    border-left-color: var(--primary);
+    border-right-color: var(--secondary);
+    border-left-width: 2px;
+    border-right-width: 2px;
+  }
+}
+/* *Browse default text */
+.noresults {
+  color: var(--text);
+}
+/* *Site game list */
+.game {
+  border-color: var(--background);
+  background-color: var(--background);
+  animation: 2s opacityInAnim;
+  & p {
+    animation: 2s colorDesaturateAnim;
+    color: var(--text);
+  }
+
+  & a {
+    color: var(--text);
+    background-color: var(--backgroundD);
+    border-color: var(--backgroundD);
+    &:hover {
+      color: var(--textL);
+    }
+  }
+}
